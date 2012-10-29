@@ -27,7 +27,7 @@ namespace Company.AlkampferVsix.OutputFormatting
         public event EventHandler<ClassificationChangedEventArgs> ClassificationChanged;
 
         #endregion 
-
+           
         #region Public Methods
 
         /// <summary>
@@ -51,7 +51,8 @@ namespace Company.AlkampferVsix.OutputFormatting
                 IClassificationType type = _classificationTypeRegistry.GetClassificationType("output.wpfbindingalert");
                 spans.Add(new ClassificationSpan(span, type));
             }
-            else if (text.IndexOf("error ", StringComparison.OrdinalIgnoreCase) >= 0)
+            else if (text.IndexOf("error ", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                     text.IndexOf("error:", StringComparison.OrdinalIgnoreCase) >= 0)
             {
                 //error followed by a space is the typical error of the build.
                 IClassificationType type = _classificationTypeRegistry.GetClassificationType("output.alert");
